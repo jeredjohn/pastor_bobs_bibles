@@ -20,3 +20,17 @@ Keyword - From keyword results, has options to view in chapter or verse range.
 Chapter
 Verse
 Verse Range
+
+INSTALL (Linux):
+
+Install virtual environment (optional).
+
+pip install -r requirements.txt
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py load_all
+
+

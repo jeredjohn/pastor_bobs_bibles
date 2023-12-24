@@ -1,0 +1,110 @@
+{% load static %}
+{% load pwa %}
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta name="description" content="A Bible app designed for ease of use and
+		large text size. Six Bibles are included (AMPC, ESV, KJV, NKJV, NASB, NIV).">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{% progressive_web_app_meta %}
+		<title>Pastor Bob's Bibles | {% block title %}{% endblock title %}</title>
+		<link rel="icon"href="{% static 'favicon/favicon.ico' %}">
+		<link rel="stylesheet" href="{% static "css/base.css" %}">
+		</head>
+		<body id="body">
+			<div class="base-container">
+
+				{% if "Chapter Search" in title %}
+					<div id="chapter-right-chevron" class="chevron">
+						<img src="{% static "icons/right-chevron.png" %}" alt="Right chevron">
+					</div>
+					<div id="chapter-left-chevron" class="chevron">
+						<img src="{% static "icons/left-chevron.png" %}" alt="Left chevron">
+					</div>
+				{% elif "Verse Search" in title %}
+					<div id="verse-right-chevron" class="chevron">
+						<img src="{% static "icons/right-chevron.png" %}" alt="Right chevron">
+					</div>
+					<div id="verse-left-chevron" class="chevron"> 
+						<img src="{% static "icons/left-chevron.png" %}" alt="Left chevron">
+					</div>	
+				{% elif "Verse Range" in title %}
+					<div id="range-right" class="plus-minus">
+						<div id="plus-right" class="range-img">
+							<img src="{% static "icons/plus.png" %}" alt="Plus icon">
+						</div>
+						<div id="minus-right" class="range-img">
+							<img src="{% static "icons/minus.png" %}" alt="Minus icon"/>
+						</div>
+					</div>
+					<div id="range-left" class="plus-minus">
+						<div id="plus-left" class="range-img">
+							<img src="{% static "icons/plus.png" %}" alt="Plus icon">
+						</div>
+						<div id="minus-left" class="range-img">
+							<img src="{% static "icons/minus.png" %}" alt="Minus icon"/>
+						</div>
+					</div>
+				{% endif %}
+				
+				{% if "Home" not in title %}
+					<a href="{% url 'home' %}">
+						<div id="menu" class="menu">
+							<img id="menu-icon" src="{% static "icons/bible.png" %}" alt="Menu icon">
+						</div>
+					</a>
+				{% endif %}
+				{% if "Home" not in title and "Bible" not in title %}
+					<div id="search-type" class="search-type">
+						<img id="search-type-icon" src="{% static "icons/search.png" %}" alt="Menu icon">
+					</div>
+				{% endif %}					
+		
+				<div id="zoom-in" class="zoom">
+					<img src="{% static "icons/zoom-in.png" %}" alt="Zoom in">
+				</div>
+				<div id="zoom-out" class="zoom">
+					<img src="{% static "icons/zoom-out.png" %}" alt="Zoom out">
+				</div>
+
+			{% block content %}{% endblock content %}
+			</div> <!-- base-container -->
+		<script charset="utf-8" src="{% static "js/base.js" %}"></script>
+	</body>
+</html>
+<!--
+	{% comment %}
+				<div id="sidebar" class="offcanvas-menu flex-col center">
+
+					<div class="flex-col center sidebar-close m-1 mt-0" onclick="closeSidebar()">
+						<span class="">Close</span>
+					</div>
+
+					<nav class="flex-col center m-1">
+						<a class="choice-btn" href="{% url 'home' %}">Select Bible</a>
+						<a class="choice-btn" href="#" onclick="urlRedirect()">Search Type</a>
+					</nav>
+
+					<div class="flex-col center m-1 mt-20">				
+							<div class="choice-btn" onclick="zoomIn()">
+								<div class="rel">
+									<span class="ml-1">Zoom</span>
+									<span class="icon-abs fs-2">+</span></div>
+							</div>
+							<div class="choice-btn" onclick="zoomOut()">
+								<div class="rel">
+									<span class="ml-1">Zoom</span>
+									<span class="icon-abs fs-2 mr-2">-</span>
+								</div>
+							</div>
+					</div>
+
+					<div class="source flex-col center sidebar-close m-1 mt-0">
+							<a href="https://github.com/jeredjohn/pastor-bobs-bibles">Source Code</a>
+					</div>
+	
+
+				</div> <!-- offcanvas-menu -->
+	{% endcomment %}
+	-->

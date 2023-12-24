@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+	<main class="home rel">
+
+		<h1 class="accent">Pastor Bob's Bibles</h1>
+		<div class="bibles flex-col center mt-20">
+			<a href="{% url 'amp_bible' %}" class="choice-btn">AMPC</a>		
+			<a href="{% url 'esv_bible' %}" class="choice-btn">ESV</a>		
+			<a href="{% url 'kjv_bible' %}" class="choice-btn">KJV</a>		
+			<a href="{% url 'nkjv_bible' %}" class="choice-btn">NKJV</a>		
+			<a href="{% url 'nas_bible' %}" class="choice-btn">NAS</a>		
+			<a href="{% url 'niv_bible' %}" class="choice-btn">NIV</a>		
+		</div>
+
+	</main>	
+{% endblock content %}

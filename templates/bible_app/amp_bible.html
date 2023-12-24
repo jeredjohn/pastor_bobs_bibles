@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AMPC Bible{% endblock title %}
+{% block content %}
+
+		<main class="bible">
+
+			<h1 class="accent">AMPC Bible</h1>
+			
+			<div class="m-1 flex-col center">
+				<h2 class="accent">Choose Search Type</h2>
+				<a class="choice-btn" href="{% url 'amp_keyword' %}">Keyword</a>
+				<a class="choice-btn" href="{% url 'amp_chapters' %}">Chapter</a>
+				<a class="choice-btn" href="{% url 'amp_verse' %}">Verse</a>
+				<a class="choice-btn" href="{% url 'amp_verse_range' %}">Verse Range</a>
+			</div>
+
+		</main>
+
+{% endblock content %}

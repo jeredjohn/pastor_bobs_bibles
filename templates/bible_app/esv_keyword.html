@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+
+		<main class="search-results">
+
+			<h1 class="accent">{{ title }}</h1>
+		
+			<div class="form">
+				<form id="keyword-form" class="" action="{% url 'esv_keyword' %}" method="get">  
+					<input id="keyword" name="q" class="" type="text" 
+					       placeholder="Search" aria-label="Search" autofocus=true>
+				</form>
+			</div>
+			
+			<div class="results-count">
+				{% if esv_keyword_results %}
+					<p>
+						{{ esv_keyword_results.count }} results for 
+						<span class="accent">{{ keyword }}</span>
+					</p>
+				{% elif esv_keyword_results.count == 0 %}
+					<p>
+						Sorry, no results for 
+						<span class="accent">{{ keyword }}</span>
+					</p>
+				{% endif %}
+			</div>
+
+			{% if esv_keyword_results %}
+			<div id="results" class="mt-30">
+
+					{% for verse in esv_keyword_results %}
+						<div id="div-verse-{{ verse.id }}"
+							class="rel"
+							onmouseover="showIcons(id=this.id)"
+							onmouseout="hideIcons(id=this.id)">																	
+
+							<div class="verse-heading rel">
+								<h2 id="text-heading-{{ verse.id }}" class="accent">{{ verse.book_name }} {{ verse.chapter }}:{{ verse.verse }}</h2>
+								<p id="p-one-{{ verse.id }}" class="html-verse">
+									<span class="accent-dk">&lt;</span><span class="accent-dk">blockquote</span><span class="accent-dk">&gt;</span>
+								</p>
+								<div class="copy-icon" onclick="copyKeywordVerse(id=this.id)"
+										 id="copy-text-icon-{{ verse.id }}">
+									<img src="{% static "icons/copy-icon.png" %}" alt="Copy icon">
+								</div>				
+								<div id="show-html-{{ verse.id }}" class="copy-icon" onclick="showHtml(id=this.id)">
+									<img id="verse-icon-{{ verse.id }}" src="{% static "icons/html-icon.png" %}" alt="HTML icon">
+								</div>		
+								<div id="drop-down-{{ verse.id }}" class="drop-down"
+									   onclick="toggleDropDown(id=this.id)">
+									<img id="drop-down-img-{{ verse.id }}" src="{% static "icons/right-chevron.png" %}" alt="Right chevron">	
+								</div>
+								<span id="copied-html-alert" class="copied-alert">Copied!</span>
+								{% if "Keyword" in title %}
+									<div id="drop-down-menu-{{ verse.id }}"
+										 class="drop-down-menu">
+									<p id="view-chapter-{{ verse.id }}" 
+										 class="drop-down-item"
+										 onclick="viewChapter(id=this.id)"
+										 data-book="{{ verse.book_id }}" data-chapter="{{ verse.chapter }}">
+										 View chapter
+									</p>
+									<p id="view-next-prev-{{ verse.id }}" class="drop-down-item"
+									   onclick="viewNextPrev(id=this.id)"
+										 data-book="{{ verse.book_id }}" data-chapter="{{ verse.chapter }}"
+										 data-verse="{{ verse.verse }}">
+										View next/prev
+									</p>
+								</div>
+								{% endif %}
+							</div> <!-- verse-heading -->
+
+							<p id="text-verse-{{ verse.id }}" class="jt mb-10">{{ verse.text }}</p>
+
+							<div class="html-verse" id="html-{{ verse.id }}">
+								<p id="p-two-{{ verse.id }}">{{ verse.text }}</p>
+								<p id="p-three-{{ verse.id }}"><span class="accent-dk">&lt;div</span><span class="text-dk"> class=</span><span class="olive">"bq-source"&gt;</span>- {{ verse.book_name }} {{ verse.chapter }}:{{ verse.verse }}<span class="accent-dk">&lt;/div&gt;</span></p>
+								<p id="p-four-{{ verse.id }}"><span class="accent-dk">&lt;/blockquote&gt;</span></p>
+							</div>
+
+						</div>  <!-- div-verse- -->						
+					{% endfor %}				
+
+				</div>  <!-- results -->
+			{% endif %}
+
+		</main>
+
+{% endblock content %}
+
+			
+
+

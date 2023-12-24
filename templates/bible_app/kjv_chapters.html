@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+
+		<main class="kjv-chapter">
+
+			<h1 class="accent">{{ title }}</h1>
+
+			<div class="form">
+				<form id="chapter-form" action="" method="['get', 'post']">
+					{% csrf_token %}
+					{{ form }}
+					<input class="submit p-3" type="submit" value="Submit" name="" id="" />
+				</form>
+			</div>
+
+			{% if kjv_chapter_results %}
+				<div id="results" class="mt-20 pb-30">
+					<div id="div-chapter-{{ kjv_chapter_results.first.id }}" class="kjv-ch-results rel"
+							 onmouseover="showIcons(id=this.id)"
+							 onmouseout="hideIcons(id=this.id)">													
+						<div class="verse-heading">
+							<h2 id="text-heading" class="accent">{{ book_name }} {{ chapter }}</h2>
+							<p id="p-one"><span class="accent-dk">&lt;</span><span class="accent-dk">blockquote</span><span class="accent-dk">&gt;</span></p>
+							<div class="copy-icon rel" onclick="copyVerse(id=this.id)"
+									 id="copy-icon">
+								<img id="copy-icon-img" src="{% static "icons/copy-icon.png" %}" alt="Copy icon">
+							</div>				
+							<div id="show-html" class="copy-icon rel" onclick="showHtml(id=id)">
+								<img id="toggle-results-icon" src="{% static "icons/html-icon.png" %}" alt="HTML icon">
+							</div>				
+							<span id="copied-text-alert" class="copied-alert">Copied!</span>
+						</div> <!-- verse-heading -->
+					
+					<p id="text-verse" class="jt">
+						{% for verse in kjv_chapter_results %}						
+							{% if forloop.counter == 1 %}
+								{{ verse.text }}
+							{% else %}
+								<sup class="accent">{{ verse.verse }}</sup> {{ verse.text }}
+							{% endif %}
+						{% endfor %}
+					</p>
+					<div id="html">
+							<p id="p-two">
+							{% for verse in kjv_chapter_results %}
+								{% if forloop.counter == 1 %}
+									{{ verse.text }}
+								{% else %}
+									<span class="accent-dk">&lt;sup</span> <span class="text-dk">class=</span><span class="olive">"accent"</span><span class="accent-dk">&gt;</span> {{ verse.verse }} <span class="accent-dk">&lt;/sup&gt;</span>{{ verse.text }}
+								{% endif %}
+							{% endfor %}
+						</p>
+						<p id="p-three"><span class="accent-dk">&lt;div</span><span class="text-dk"> class=</span><span class="olive">"bq-source"&gt;</span>- {{ book_name }} {{ chapter }}:{{ verse_start }}-{{ verse_end }}<span class="accent-dk">&lt;/div&gt;</span></p>
+						<p id="p-four"><span class="accent-dk">&lt;/blockquote&gt;</span></p>
+					</div>
+
+					</div>
+				</div>
+			{% endif %}
+
+		</main>
+
+{% endblock content %}

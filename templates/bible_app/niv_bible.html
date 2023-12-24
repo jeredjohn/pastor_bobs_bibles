@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}NIV Bible{% endblock title %}
+{% block content %}
+
+		<main class="bible">
+
+			<h1 class="accent">NIV Bible</h1>
+			
+			<div class="m-1 flex-col center">
+				<h2 class="accent">Choose Search Type</h2>
+				<a class="choice-btn" href="{% url 'niv_keyword' %}">Keyword</a>
+				<a class="choice-btn" href="{% url 'niv_chapters' %}">Chapter</a>
+				<a class="choice-btn" href="{% url 'niv_verse' %}">Verse</a>
+				<a class="choice-btn" href="{% url 'niv_verse_range' %}">Verse Range</a>
+			</div>
+
+		</main>
+
+{% endblock content %}

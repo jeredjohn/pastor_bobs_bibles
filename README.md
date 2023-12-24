@@ -1,3 +1,6 @@
+FRAMEWORK:
+Django
+
 DATABASE:
 PostgreSQL 
 
@@ -43,4 +46,4 @@ python manage.py load_nas
 
 python manage.py load_niv
 
-
+python manage.py runserver

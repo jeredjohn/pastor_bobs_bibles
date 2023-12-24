@@ -1,5 +1,5 @@
 DATABASE:
-PostgreSQL
+PostgreSQL 
 
 BIBLES:
 English Standard Version (ESV)

@@ -47,7 +47,7 @@
 						</div>
 					</div>
 				{% endif %}
-				
+
 				{% if "Home" not in title %}
 					<a href="{% url 'home' %}">
 						<div id="menu" class="menu">
@@ -55,7 +55,9 @@
 						</div>
 					</a>
 				{% endif %}
-				{% if "Home" not in title and "Bible" not in title %}
+
+				{% if "Home" not in title and "App" not in title %}
+
 					<div id="search-type" class="search-type">
 						<img id="search-type-icon" src="{% static "icons/search.png" %}" alt="Menu icon">
 					</div>
@@ -73,38 +75,4 @@
 		<script charset="utf-8" src="{% static "js/base.js" %}"></script>
 	</body>
 </html>
-<!--
-	{% comment %}
-				<div id="sidebar" class="offcanvas-menu flex-col center">
 
-					<div class="flex-col center sidebar-close m-1 mt-0" onclick="closeSidebar()">
-						<span class="">Close</span>
-					</div>
-
-					<nav class="flex-col center m-1">
-						<a class="choice-btn" href="{% url 'home' %}">Select Bible</a>
-						<a class="choice-btn" href="#" onclick="urlRedirect()">Search Type</a>
-					</nav>
-
-					<div class="flex-col center m-1 mt-20">				
-							<div class="choice-btn" onclick="zoomIn()">
-								<div class="rel">
-									<span class="ml-1">Zoom</span>
-									<span class="icon-abs fs-2">+</span></div>
-							</div>
-							<div class="choice-btn" onclick="zoomOut()">
-								<div class="rel">
-									<span class="ml-1">Zoom</span>
-									<span class="icon-abs fs-2 mr-2">-</span>
-								</div>
-							</div>
-					</div>
-
-					<div class="source flex-col center sidebar-close m-1 mt-0">
-							<a href="https://github.com/jeredjohn/pastor-bobs-bibles">Source Code</a>
-					</div>
-	
-
-				</div> <!-- offcanvas-menu -->
-	{% endcomment %}
-	-->

@@ -10,3 +10,14 @@ class HomeView(TemplateView):
         return context
 
 home = HomeView.as_view()
+
+
+class InfoView(TemplateView):
+    template_name = 'info.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "App Information"
+        return context
+
+info = InfoView.as_view()

@@ -1,0 +1,524 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+@import "resets/normalize.css";
+@import "resets/reset.css";
+@import "resets/typography.css";
+
+:root {
+	--text-lt: HSL(218, 26%, 95%);
+	--text: HSL(218, 26%, 85%);
+	--text-dk: HSL(218, 26%, 75%);
+
+	--accent: HSL(40, 70%, 73%);
+	--accent-dk: HSL(40, 70%, 50%);
+	--olive: HSL(92, 27%, 64%);
+	
+	--bg-main-lt: HSL(220, 16%, 40%);
+	--bg-main: HSL(220, 16%, 30%);
+	--bg-main-md-dk: HSL(220, 16%, 25%);
+	--bg-main-dk: HSL(220, 16%, 20%);
+	--bg-main-xdk: HSL(220, 16%, 15%);
+}	
+
+.bg-main {
+	background: var(--bg-main);
+}
+
+.accent {
+	color: var(--accent);
+}
+
+.accent-dk {
+	color: var(--accent-dk);
+}
+
+.olive {
+	color: var(--olive);
+}
+
+.text-dk {
+	color: var(--text-dk);
+}
+
+.fs-2 {
+	font-size: 2em;
+	top: -60%;
+}
+
+.m-0 {
+	margin: 0;
+}
+
+.m-3 {
+	margin: .3em;
+}
+
+.m-1 {
+	margin: 1em;
+}
+
+.ml-a {
+	margin-left: auto;
+}
+
+.ml-1 {
+	margin-left: -1em;
+}
+
+.mr-2 {
+	margin-right: .2em;
+}
+
+.mt-1 {
+	margin-top: 1em;
+}
+
+.mt-20 {
+	margin-top: 2em;
+}
+
+.mt-30 {
+	margin-top: 3em;
+}
+
+.mb-10 {
+	margin-bottom: 1em;
+}
+
+.mb-20 {
+	margin-bottom: 2em;
+}
+
+.mb-15 {
+	margin-bottom: 1.5em;
+}
+
+.p-0 {
+	padding: 0;
+}
+
+.p-10 {
+	padding: 1em;
+}
+
+.p-3 {
+	padding: .3em;
+}
+
+.pb-30 {
+	padding-bottom: 3em;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.center {
+	text-align: center;
+}
+
+.jt {
+	text-align: justify;
+}
+
+.lt {
+	text-align: left;
+}
+
+.br-3 {
+	border-radius: .3em;
+}
+
+.br {
+	border: 1px solid red;
+}
+
+.bg {
+	border: 1px solid gold;
+}
+
+.rel {
+	position: relative;
+}
+
+.icon-abs {
+	position: absolute;
+	right: 1.5em;
+}
+
+.abs {
+	position: absolute;
+}
+
+html, body {
+	width: 100vw;
+	height: 100%;
+	background: var(--bg-main-dk);
+	color: var(--text);
+	overflow-x: hidden;
+}	
+
+body {
+}	
+
+div.base-container {
+	display: flex;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+h1 {
+	text-align: center;
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2.8em;
+}
+
+h3 {
+	font-size: 2.5em;
+}
+
+p {
+	font-size: 2.5em;
+}
+
+div.chevron {
+	display: flex;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	width: 6.5%;
+	height: 50vh;
+	padding: 2%;
+}
+
+div.chevron:hover,
+div.plus-minus {
+	cursor: pointer;
+}
+
+div#verse-right-chevron,
+div#chapter-right-chevron {
+	right: 0;
+}
+
+div#verse-left-chevron,
+div#chapter-left-chevron {
+	left: 0;
+}
+
+div.chevron > img {
+	max-width: 100%;
+	max-height: 100%;
+	opacity: 10%;
+}
+
+div.plus-minus {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: fixed;
+	bottom: 0;
+	width: 8%;
+	height: 50vh;
+}
+
+div.range-img {
+	display: flex;
+	justify-content: center;
+}
+
+div.plus-minus img {
+	max-width: 35%;
+	opacity: 10%;
+	padding: 20% 0;
+}
+
+div.range-img {
+	margin: 5% 10%;
+	border-radius: .3em
+}
+
+div#range-right {
+	right: 0;
+}
+
+div#range-left {
+	left: 0;
+}
+
+.sidebar-close:hover,
+a:hover {
+	cursor: pointer;
+}
+
+div.choice-btn,
+a.choice-btn {
+	background: var(--bg-main);
+	margin: .3em; 
+	font-size: 2em;
+	border-radius: .3em;
+	padding: .3em;
+}
+
+div.choice-btn:hover,
+a.choice-btn:hover {
+	background: var(--bg-main-lt);
+}
+
+
+
+div.base-container {
+	display: flex;	
+	justify-content: center;
+}
+
+main.home,
+main.search-results,
+main.esv-chapter,
+main.esv-verse,
+main.amp-verse,
+main.kjv-verse,
+main.nkjv-verse,
+main.nas-verse,
+main.niv-verse,
+main.amp-chapter,
+main.kjv-chapter,
+main.nkjv-chapter,
+main.nas-chapter,
+main.niv-chapter {
+	width: 85%;
+	display: flex;
+	flex-direction: column;
+}
+
+main.home {
+	align-items: center;
+}
+
+main.home h1 {
+	text-align: center;
+}
+
+.bibles {
+	width: 30em;
+}
+
+div.results-count {
+	display: flex;
+	justify-content: center;
+}
+
+div.verse-heading {
+	display: flex;
+}
+
+div.results {
+	margin: 3em 0;
+}
+
+div#html-results,
+p#p-one,
+div#html {
+	display: none;
+}
+
+div.html-verse,
+p.html-verse {
+	display: none;
+}
+
+div.copy-icon,
+div.drop-down {
+	width: 2em;
+	margin: 0 1em;
+	display: none;
+}	
+
+div.copy-icon > img {
+	max-width: 3em;
+}
+
+div.drop-down > img {
+	max-height: 2.5em;
+	max-width: 3em;
+	opacity: 50%;
+	margin-top: .27em;
+}
+
+div.drop-down > img:hover {
+	opacity: 100%;
+}
+
+div.drop-down-menu {
+	position: absolute;
+	display: none;
+	top: 3.2em;
+	right: 0;
+	background: var(--bg-main-xdk);
+	color: var(--text-muted);
+	border-radius: .3em;
+	z-index: 1;
+}
+
+div.drop-down-menu > p {
+	padding: .25em 1em;
+	border-radius: .3em;
+}
+
+div.drop-down-menu > p:hover {
+	background: var(--bg-main);
+	color: var(--text-lt);
+	cursor: pointer;
+}
+
+span.copied-alert {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	font-size: 2em;
+	background: var(--bg-main-lt);
+	border-radius: .3em;
+	padding: .1em .3em;
+	color: white;
+	display: none;
+}
+
+div.drop-down:hover,
+div.copy-icon:hover {
+	cursor: pointer;
+}
+
+/* -------- Icons -------- */
+
+.info,
+.menu {
+	position: fixed;
+	top: 5%;
+	left: 3%;
+	max-width: 4%;
+}
+
+.search-type {
+	position: fixed;
+	left: 1.5%;
+	top: 15%;
+	max-width: 4%;
+}
+
+.zoom,
+.search-type:hover,
+.info:hover,
+.menu:hover {
+	cursor: pointer;
+}
+
+.menu > img,
+.info > img {
+	max-width: 100%;
+	opacity: 60%;
+}
+
+.search-type > img,
+.zoom > img {
+	max-width: 70%;
+	opacity: 10%;
+}
+
+.zoom > img:hover,
+.search-type > img:hover,
+.info > img:hover,
+.menu > img:hover {
+	opacity: 100%;
+}
+
+.zoom {
+	position: fixed;
+	right: 1.5%;
+	max-width: 4%;
+}
+
+#zoom-in {
+	top: 5%;
+}
+
+#zoom-out {
+	top: 13%;
+}
+
+/* --------- FORMS ------------- */ 
+
+div.form {
+	display: flex;
+	justify-content: center;
+}
+
+form {
+	display: flex;
+}
+
+.submit {
+	background: var(--bg-main);
+	color: var(--text);
+}
+
+.django-ckeditor-widget,
+div#cke_id_body,
+span#ck_1_top {
+	background-color: var(--bg-main-lt);
+
+}
+
+input, select {
+	color: var(--text);
+	background: var(--bg-main-lt);
+	font-size: 2em;
+	text-align: center;
+	margin: .5em;
+	padding: .2em;
+	border-radius: .3em;
+	border: none;
+}
+
+input.submit:focus {
+	border: 1px solid lightblue;
+}
+
+input:hover,
+input:focus,
+select:hover,
+select:focus {
+	border: 1px solid lightblue;
+	cursor: pointer;
+	background: var(--bg-main-lt);
+	color: white;
+	outline: none;
+}
+
+::placeholder {
+	color: var(--text);
+}
+
+div.source {
+	background: var(--bg-main-md-dk);
+	color: var(--text);
+}
+
+div.source:hover {
+	background: var(--bg-main);
+	color: var(--text-lt);
+}
+
+.source-code {
+	font-size: 2em;
+	color: HSL(218, 27%, 58%);
+	margin-top: 2em;
+}
+
+.source-code:hover {
+	color: white;
+}

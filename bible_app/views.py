@@ -5,7 +5,6 @@ from django.views.generic.edit import FormView
 from .models import *
 from .forms import *
 
-
 class AMPCBibleView(TemplateView):
     template_name = 'bible_app/amp_bible.html'
 
@@ -114,8 +113,8 @@ class AMPCVerseRangeView(FormView):
             context['verse_end'] = verse_end
             if book_name != None and book_num != None and chapter != None and verse_end != None and verse_start != None:
                 amp_verse_range_results = AMPCBible.objects.filter(Q(book_name=book_name) & 
-                    Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end)).order_by("verse")     
-                context['amp_verse_range_results'] = amp_verse_range_results 
+                    Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end))     
+                context['amp_verse_range_results'] = amp_verse_range_results.order_by("verse") 
             return context            
 
 amp_verse_range = AMPCVerseRangeView.as_view()
@@ -151,6 +150,11 @@ class ESVChaptersView(FormView):
             esv_chapter_results =  ESVBible.objects.filter(Q(book_name=book_name) & 
                     Q(chapter=chapter))     
             context['esv_chapter_results'] = esv_chapter_results.order_by("verse")
+            audio_text = ""
+            for verse in list(esv_chapter_results):
+                audio_text += verse.text
+            audio_file = gTTS(text=audio_text, lang="en-us", slow=False)
+            audio_file.save(f"{book_name}_{chapter}.mp3")
             return context            
 
 esv_chapters = ESVChaptersView.as_view()
@@ -209,7 +213,7 @@ class ESVVerseRangeView(FormView):
             if book_name != None and book_num != None and chapter != None and verse_end != None and verse_start != None:
                 esv_verse_range_results = ESVBible.objects.filter(Q(book_name=book_name) & 
                     Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end))     
-                context['esv_verse_range_results'] = esv_verse_range_results 
+                context['esv_verse_range_results'] = esv_verse_range_results.order_by("verse")
             return context            
 
 esv_verse_range = ESVVerseRangeView.as_view()
@@ -323,7 +327,7 @@ class KJVVerseRangeView(FormView):
             if book_name != None and book_num != None and chapter != None and verse_end != None and verse_start != None:
                 kjv_verse_range_results = KJVBible.objects.filter(Q(book_name=book_name) & 
                     Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end))     
-                context['kjv_verse_range_results'] = kjv_verse_range_results 
+                context['kjv_verse_range_results'] = kjv_verse_range_results.order_by("verse")
             return context            
 
 kjv_verse_range = KJVVerseRangeView.as_view()
@@ -401,7 +405,7 @@ class NKJVVerseRangeView(FormView):
             if book_name != None and book_num != None and chapter != None and verse_end != None and verse_start != None:
                 nkjv_verse_range_results = NKJVBible.objects.filter(Q(book_name=book_name) & 
                     Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end))     
-                context['nkjv_verse_range_results'] = nkjv_verse_range_results 
+                context['nkjv_verse_range_results'] = nkjv_verse_range_results.order_by("verse")
             return context            
 
 nkjv_verse_range = NKJVVerseRangeView.as_view()
@@ -552,7 +556,7 @@ class NASVerseRangeView(FormView):
             if book_name != None and book_num != None and chapter != None and verse_end != None and verse_start != None:
                 nas_verse_range_results = NASBible.objects.filter(Q(book_name=book_name) & 
                     Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end))     
-                context['nas_verse_range_results'] = nas_verse_range_results 
+                context['nas_verse_range_results'] = nas_verse_range_results.order_by("verse")
             return context            
 
 nas_verse_range = NASVerseRangeView.as_view()
@@ -666,7 +670,7 @@ class NIVVerseRangeView(FormView):
             if book_name != None and book_num != None and chapter != None and verse_end != None and verse_start != None:
                 niv_verse_range_results = NIVBible.objects.filter(Q(book_name=book_name) & 
                     Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end))     
-                context['niv_verse_range_results'] = niv_verse_range_results 
+                context['niv_verse_range_results'] = niv_verse_range_results.order_by("verse")
             return context            
 
 niv_verse_range = NIVVerseRangeView.as_view()

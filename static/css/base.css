@@ -395,6 +395,7 @@ div.copy-icon:hover {
 
 /* -------- Icons -------- */
 
+.info,
 .menu {
 	position: fixed;
 	top: 5%;
@@ -507,4 +508,14 @@ div.source {
 div.source:hover {
 	background: var(--bg-main);
 	color: var(--text-lt);
+}
+
+.source-code {
+	font-size: 2em;
+	color: HSL(218, 27%, 58%);
+	margin-top: 2em;
+}
+
+.source-code:hover {
+	color: white;
 }

@@ -16,12 +16,12 @@
 			
 			<div class="results-count">
 				{% if esv_keyword_results %}
-					<p>
+					<p id="keyword-results">
 						{{ esv_keyword_results.count }} results for 
 						<span class="accent">{{ keyword }}</span>
 					</p>
 				{% elif esv_keyword_results.count == 0 %}
-					<p>
+					<p id="keyword-results">
 						Sorry, no results for 
 						<span class="accent">{{ keyword }}</span>
 					</p>

@@ -344,6 +344,9 @@ if (document.URL.includes("keyword")) {
 		}
 		keywordForm.submit();		
 	});		
+	if (document.getElementById("keyword-results") == null) {
+		keywordForm.submit();
+	}
 }
 // }}}
 // }}}

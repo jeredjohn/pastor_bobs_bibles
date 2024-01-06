@@ -399,7 +399,7 @@ div.copy-icon:hover {
 .menu {
 	position: fixed;
 	top: 5%;
-	left: 3%;
+	left: 1%;
 	max-width: 4%;
 }
 
@@ -412,13 +412,11 @@ div.copy-icon:hover {
 
 .zoom,
 .search-type:hover,
-.info:hover,
 .menu:hover {
 	cursor: pointer;
 }
 
-.menu > img,
-.info > img {
+.menu > img {
 	max-width: 100%;
 	opacity: 60%;
 }
@@ -431,7 +429,6 @@ div.copy-icon:hover {
 
 .zoom > img:hover,
 .search-type > img:hover,
-.info > img:hover,
 .menu > img:hover {
 	opacity: 100%;
 }

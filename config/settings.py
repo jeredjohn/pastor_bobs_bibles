@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY='django-insecure-&==8k0&frh&x+b+^3#!%_)wjd#3jb^sf30mh(7@!1z&jnajg*!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'pastorbobsbibles.app', 'www.pastorbobsbibles.app']
 
@@ -70,9 +70,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'NAME': 'pastor_bobs_bibles',
+        'USER': 'jered',
+        'PASSWORD': 'Destroyer1!',
         'HOST': 'localhost',
         'PORT': 5432
     }

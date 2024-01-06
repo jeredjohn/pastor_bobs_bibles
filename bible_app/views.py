@@ -137,25 +137,20 @@ class ESVChaptersView(FormView):
     success_url = '/bible_app/esv_chapters/'
 
     def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            book_num = self.request.GET.get('book_name')
-            context['book_num'] = book_num
-            if book_num == None:
-                book_num = 1
-            context['title'] = "ESV Chapter Search"        
-            book_name = BOOK_NAMES[int(book_num) - 1]
-            context['book_name'] = book_name
-            chapter = self.request.GET.get('chapter')
-            context['chapter'] = chapter
-            esv_chapter_results =  ESVBible.objects.filter(Q(book_name=book_name) & 
-                    Q(chapter=chapter))     
-            context['esv_chapter_results'] = esv_chapter_results.order_by("verse")
-            audio_text = ""
-            for verse in list(esv_chapter_results):
-                audio_text += verse.text
-            audio_file = gTTS(text=audio_text, lang="en-us", slow=False)
-            audio_file.save(f"{book_name}_{chapter}.mp3")
-            return context            
+        context = super().get_context_data(**kwargs)
+        book_num = self.request.GET.get('book_name')
+        context['book_num'] = book_num
+        if book_num == None:
+            book_num = 1
+        context['title'] = "ESV Chapter Search"        
+        book_name = BOOK_NAMES[int(book_num) - 1]
+        context['book_name'] = book_name
+        chapter = self.request.GET.get('chapter')
+        context['chapter'] = chapter
+        esv_chapter_results =  ESVBible.objects.filter(Q(book_name=book_name) & 
+                Q(chapter=chapter))     
+        context['esv_chapter_results'] = esv_chapter_results.order_by("verse")
+        return context            
 
 esv_chapters = ESVChaptersView.as_view()
 

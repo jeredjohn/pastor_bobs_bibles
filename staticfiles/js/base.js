@@ -827,7 +827,26 @@ if (document.title.includes("Verse Range")) {
 	
 	// }}}
    // .......... onload {{{
-	
+	let numVerses = localStorage.getItem("verseRangeNumberOfVerses");
+	if (numVerses) {
+		removeAllChildNodes(verseGteSelect);
+		removeAllChildNodes(verseLteSelect);
+		for (let i = 1; i < Number(numVerses) + 1; i++) {
+			let newOption = new Option(i, i);
+			verseGteSelect.add(newOption, undefined);
+		}
+		for (let i = 1; i < Number(numVerses) + 1; i++) {
+			let newOption = new Option(i, i);
+			verseLteSelect.add(newOption, undefined);
+		}
+		let verseGte = localStorage.getItem("verseRangeVerseGte");
+		let verseLte = localStorage.getItem("verseRangeVerseLte");
+		verseGteSelect.value = verseGte;
+		verseLteSelect.value = verseLte;
+		stock("verseRangeVerseGte", verseGteSelect.value);
+		stock("verseRangeVerseLte", verseLteSelect.value);
+	}
+
 	setSelect("verseRangeBook", bookSelect);
 	setSelect("verseRangeChapter", chapterSelect);
 	setSelect("verseRangeVerseGte", verseGteSelect);
@@ -848,17 +867,6 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
 		console.log("blah");
-		console.log("SELECT",
-			"\nbook", bookSelect.value, 
-			"\nchapter", chapterSelect.value, 
-			"\nverse gte", verseGteSelect.value, 
-			"\nverse lte", verseLteSelect.value, 
-			"\n\nSTORAGE",
-			"\nbook", localStorage.getItem("verseRangeBook"), 
-			"\nchapter", localStorage.getItem("verseRangeChapter"), 
-			"\nverse gte", localStorage.getItem("verseRangeVerseGte"),
-			"\nverse lte", localStorage.getItem("verseRangeVerseLte"));
-
 		verseRangeForm.submit();
 	});
 
@@ -866,13 +874,18 @@ if (document.title.includes("Verse Range")) {
 	// .......... bookSelect.addEventListener {{{
 	
 	bookSelect.addEventListener('change', (event) => {
-		let book = bookNames[bookSelect.value];
-		let chapter = chapterSelect.value;
+		let bookName = bookNames[bookSelect.value];
 		let verseGte = verseGteSelect.value; 
 		let verseLte = verseLteSelect.value;
+		let numberOfChapters = numChapters[bookName];
+		removeAllChildNodes(chapterSelect);
 		removeAllChildNodes(verseGteSelect);
-		removeAllChildNodes(verseLteSelect);								
-		let count = verseCount[book][chapter];
+		removeAllChildNodes(verseLteSelect);		
+		for (let i = 1; i < numberOfChapters + 1; i++) {
+			let newOption = new Option(i, i);
+			chapterSelect.add(newOption, undefined);
+		}
+		let count = verseCount[bookName][1];
 		for (let i = 1; i < count + 1; i++) {
 			let newOption = new Option(i, i);
 			verseGteSelect.add(newOption, undefined);
@@ -881,6 +894,9 @@ if (document.title.includes("Verse Range")) {
 			let newOption = new Option(i, i);
 			verseLteSelect.add(newOption, undefined);
 		}
+		chapterSelect.value = 1;
+		verseGteSelect.value = 1;
+		verseLteSelect.value = 1;
 		stock("verseRangeBook", bookSelect.value);
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
@@ -1351,10 +1367,14 @@ function viewChapter(id) {
 
 function viewNextPrev(id) {
 	let div = document.getElementById(id);
-	let book = div.getAttribute("data-book");
+	let bookId = div.getAttribute("data-book");
+	let bookName = bookNames[bookId];
 	let chapter = div.getAttribute("data-chapter"); 
 	let verse = div.getAttribute("data-verse");
-	stock("verseRangeBook", book);
+	console.log(verse, typeof(verse));
+	let numberOfVerses = verseCount[bookName][chapter];
+	stock("verseRangeNumberOfVerses", numberOfVerses);
+	stock("verseRangeBook", bookId);
 	stock("verseRangeChapter", chapter);
 	stock("verseRangeVerseGte", verse);
 	stock("verseRangeVerseLte", verse);

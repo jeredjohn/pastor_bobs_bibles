@@ -873,7 +873,9 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
-		console.log("blah");
+		console.log("GTE", verseGteSelect.value);
+		console.log("GTE", verseGteSelect.value);
+		console.log("LTE", verseLteSelect.value);
 		verseRangeForm.submit();
 	});
 
@@ -927,6 +929,7 @@ if (document.title.includes("Verse Range")) {
 			let newOption = new Option(i, i);
 			verseLteSelect.add(newOption, undefined);
 		}
+		stock("verseRangeNumberOfVerses", count);
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);

@@ -873,9 +873,6 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
-		console.log("GTE", verseGteSelect.value);
-		console.log("GTE", verseGteSelect.value);
-		console.log("LTE", verseLteSelect.value);
 		verseRangeForm.submit();
 	});
 

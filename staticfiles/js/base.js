@@ -5,9 +5,9 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("updateTwo") != "true") {
+if (localStorage.getItem("updateThree") != "true") {
 	resetLocalStorage();
-	localStorage.setItem("updateTwo", "true");	
+	localStorage.setItem("updateThree", "true");	
 }
 
 function resetLocalStorage() {
@@ -353,6 +353,8 @@ if (document.URL.includes("keyword")) {
 
 if (document.title.includes("Chapter")) {
 // .......... onload {{{
+	
+
 
 	let rightChevron = document.getElementById("chapter-right-chevron");
 	rightChevron.addEventListener('mouseover', (event) => {
@@ -414,6 +416,7 @@ if (document.title.includes("Chapter")) {
 		}
 		localStorage.setItem("chapterChapter", chapterSelect.value);		
 	});
+
 	let chapterBookStorage = localStorage.getItem("chapterBook");
 	let chapterChapterStorage = localStorage.getItem("chapterChapter");
 	let numberOfChapters = localStorage.getItem("chapterNumberOfChapters");
@@ -427,11 +430,12 @@ if (document.title.includes("Chapter")) {
 			chapterSelect.add(newOption, undefined);
 		}
 	}
+
 	if (chapterChapterStorage != null) {
 		chapterSelect.value = chapterChapterStorage;
 	}
 	if (document.getElementById("results") == null) {
-		document.getElementById("chapter-form").submit();
+		//document.getElementById("chapter-form").submit();
 	}
 }	
 
@@ -1364,9 +1368,11 @@ function viewChapter(id) {
  	let div = document.getElementById(id);
 	let book = div.getAttribute("data-book");
 	let chapter = div.getAttribute("data-chapter"); 
+	let bookName = bookNames[book];
+	let numberOfChapters = numChapters[bookName];
+	stock("chapterNumberOfChapters", numberOfChapters);
 	stock("chapterBook", book);
 	stock("chapterChapter", chapter);
-
 	let url = document.URL
 	let chapterUrl = url.replace("_keyword", "_chapters");
 	window.location.href = chapterUrl;

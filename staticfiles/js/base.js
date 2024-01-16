@@ -435,7 +435,7 @@ if (document.title.includes("Chapter")) {
 		chapterSelect.value = chapterChapterStorage;
 	}
 	if (document.getElementById("results") == null) {
-		//document.getElementById("chapter-form").submit();
+		document.getElementById("chapter-form").submit();
 	}
 }	
 

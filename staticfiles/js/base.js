@@ -5,14 +5,16 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("updateOne") != "true") {
+if (localStorage.getItem("updateTwo") != "true") {
 	resetLocalStorage();
-	localStorage.setItem("updateOne", "true");	
+	localStorage.setItem("updateTwo", "true");	
 }
 
 function resetLocalStorage() {
+	let fontSize = localStorage.getItem("fontSize");
 	localStorage.clear();
-	localStorage.setItem("updateOne", "true");
+	localStorage.setItem("updateTwo", "true");
+	localStorage.setItem("fontSize", fontSize);
 }
 
 // .......... BIBLE DATA
@@ -342,6 +344,9 @@ if (document.URL.includes("keyword")) {
 		}
 		keywordForm.submit();		
 	});		
+	if (document.getElementById("keyword-results") == null) {
+		keywordForm.submit();
+	}
 }
 // }}}
 // }}}
@@ -461,7 +466,7 @@ function showNextChapter() {
 		}	
 	}
 	let form = document.getElementById("chapter-form");
-	// form.submit();
+	form.submit();
 }
 
 // }}}
@@ -548,7 +553,9 @@ if (document.title.includes("Verse Search")) {
 		}
 		verseSelect.value = localStorage.getItem("verseVerse");
 	}
-	
+	if (document.getElementById("text-verse") == null) {
+		document.getElementById("verse-form").submit();
+	}
 // }}}
 // .......... verseForm.addEventListener {{{
 
@@ -866,7 +873,9 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
-		console.log("blah");
+		console.log("GTE", verseGteSelect.value);
+		console.log("GTE", verseGteSelect.value);
+		console.log("LTE", verseLteSelect.value);
 		verseRangeForm.submit();
 	});
 
@@ -920,6 +929,7 @@ if (document.title.includes("Verse Range")) {
 			let newOption = new Option(i, i);
 			verseLteSelect.add(newOption, undefined);
 		}
+		stock("verseRangeNumberOfVerses", count);
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);

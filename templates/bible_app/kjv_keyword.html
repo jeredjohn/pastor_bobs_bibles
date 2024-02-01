@@ -16,12 +16,12 @@
 			
 			<div class="results-count">
 				{% if kjv_keyword_results %}
-					<p>
+					<p id="keyword-results">
 						{{ kjv_keyword_results.count }} results for 
 						<span class="accent">{{ keyword }}</span>
 					</p>
 				{% elif kjv_keyword_results.count == 0 %}
-					<p>
+					<p id="keyword-results">
 						Sorry, no results for 
 						<span class="accent">{{ keyword }}</span>
 					</p>

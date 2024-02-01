@@ -578,7 +578,6 @@ if (document.title.includes("Verse Search")) {
 
 if (document.title.includes("Verse Search")) {
 	bookSelect.addEventListener('change', (event) => {
-		console.log("Book changed");
 		let bookName = bookNames[bookSelect.value]
 		
 		// Reset chapter to one and set localStorage
@@ -682,7 +681,6 @@ function showNextVerse() {
 			}
 		} else if (chapter == numberOfChapters) {
 			if (bookId < 66) {
-				console.log("correct");
 				bookSelect.value = Number(bookId) + 1;
 				stock("verseBook", bookSelect.value);
 				nextChapterSet();
@@ -763,7 +761,6 @@ function showPreviousVerse() {
 				verseSelect.value = numberOfVerses;
 				stock("verseVerse", verseSelect.value);		
 			} else if (bookId == 1) {
-				console.log("correct");
 				chapterSelect.value = Number(chapterSelect.value) - 1;
 				stock("verseChapter", chapterSelect.value);
 				let numberOfVerses = verseCount[bookName][chapterSelect.value];
@@ -782,8 +779,6 @@ function showPreviousVerse() {
 
 		} else if (chapter == 1) {
 			if (bookId > 1) {
-				console.log("correct");
-				console.log("correct");
 				bookSelect.value = Number(bookSelect.value) - 1;
 				stock("verseBook", bookSelect.value);				
 				bookId = bookSelect.value;
@@ -797,7 +792,6 @@ function showPreviousVerse() {
 				chapterSelect.value = numberOfChapters;
 				stock("verseChapter", chapterSelect.value);
 				let numberOfVerses = verseCount[bookName][chapterSelect.value];
-				console.log(numberOfVerses);
 				if (verseSelect != null) {
 					removeAllChildNodes(verseSelect);
 					for (let i = 1; i < numberOfVerses + 1; i++) {
@@ -865,7 +859,9 @@ if (document.title.includes("Verse Range")) {
 
 	let verseRangeForm = document.getElementById("verse-form");
 	if (document.getElementById("results") == null) {
-		verseRangeForm.submit();
+		if (verseGteSelect.value <= verseLteSelect.value) {
+			verseRangeForm.submit();
+		}
 	}
 
 	// }}}
@@ -877,9 +873,7 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
-		console.log("GTE", verseGteSelect.value);
-		console.log("GTE", verseGteSelect.value);
-		console.log("LTE", verseLteSelect.value);
+
 		verseRangeForm.submit();
 	});
 
@@ -1082,7 +1076,10 @@ if (document.title.includes("Verse Range")) {
 				stock("verseRangeVerseGte", String(newOption));
 			}
 		}
-		document.getElementById("verse-form").submit();
+
+		if (lastVerse >= firstVerse) {
+			//document.getElementById("verse-form").submit();
+		}
 	}
 
 	function mouseOver(div) {
@@ -1387,7 +1384,6 @@ function viewNextPrev(id) {
 	let bookName = bookNames[bookId];
 	let chapter = div.getAttribute("data-chapter"); 
 	let verse = div.getAttribute("data-verse");
-	console.log(verse, typeof(verse));
 	let numberOfVerses = verseCount[bookName][chapter];
 	stock("verseRangeNumberOfVerses", numberOfVerses);
 	stock("verseRangeBook", bookId);

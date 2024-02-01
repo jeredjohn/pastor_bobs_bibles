@@ -16,12 +16,12 @@
 			
 			<div class="results-count">
 				{% if amp_keyword_results %}
-					<p>
+					<p id="keyword-results">
 						{{ amp_keyword_results.count }} results for 
 						<span class="accent">{{ keyword }}</span>
 					</p>
 				{% elif amp_keyword_results.count == 0 %}
-					<p>
+					<p id="keyword-results">
 						Sorry, no results for 
 						<span class="accent">{{ keyword }}</span>
 					</p>

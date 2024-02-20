@@ -5,9 +5,9 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("updateFour") != "true") {
+if (localStorage.getItem("updateFive") != "true") {
 	resetLocalStorage();
-	localStorage.setItem("updateFour", "true");	
+	localStorage.setItem("updateFive", "true");	
 }
 
 function resetLocalStorage() {
@@ -832,8 +832,13 @@ if (document.title.includes("Verse Range")) {
 	
 	// }}}
     // .......... onload {{{
-	//
+	
+	if (localStorage.getItem("verseRangeBook") == null) {
+		stock("verseRangeBook", "1");
+		stock("verseRangeNumberOfChapters", "50");
+	}		
 	setSelect("verseRangeBook", bookSelect);
+
 	let numVerses = localStorage.getItem("verseRangeNumberOfVerses");
 	let numberOfChapters = localStorage.getItem("verseRangeNumberOfChapters");
 	removeAllChildNodes(chapterSelect);
@@ -864,7 +869,7 @@ if (document.title.includes("Verse Range")) {
 	setSelect("verseRangeVerseLte", verseLteSelect);
 	let verseRangeForm = document.getElementById("verse-form");
 	if (verseGteSelect.value <= verseLteSelect.value && document.getElementById("results") == null) {
-		verseRangeForm.submit();
+		//verseRangeForm.submit();
 	}
 
 	// }}}
@@ -1339,7 +1344,7 @@ function stock(item, value) {
 function setSelect(storageValue, select) {
 	if (localStorage.getItem(storageValue)) {
 		select.value = Number(localStorage.getItem(storageValue));
-	}
+	} 	
 }
 
 // }}}

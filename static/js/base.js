@@ -863,7 +863,7 @@ if (document.title.includes("Verse Range")) {
 	setSelect("verseRangeVerseGte", verseGteSelect);
 	setSelect("verseRangeVerseLte", verseLteSelect);
 	let verseRangeForm = document.getElementById("verse-form");
-	if (verseGteSelect.value <= verseLteSelect.value && document.getElementById("results") != null) {
+	if (verseGteSelect.value <= verseLteSelect.value && document.getElementById("results") == null) {
 		verseRangeForm.submit();
 	}
 

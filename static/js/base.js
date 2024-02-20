@@ -869,7 +869,7 @@ if (document.title.includes("Verse Range")) {
 	setSelect("verseRangeVerseLte", verseLteSelect);
 	let verseRangeForm = document.getElementById("verse-form");
 	if (verseGteSelect.value <= verseLteSelect.value && document.getElementById("results") == null) {
-		//verseRangeForm.submit();
+		verseRangeForm.submit();
 	}
 
 	// }}}

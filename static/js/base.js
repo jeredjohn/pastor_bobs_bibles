@@ -5,9 +5,9 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("updateThree") != "true") {
+if (localStorage.getItem("updateFour") != "true") {
 	resetLocalStorage();
-	localStorage.setItem("updateThree", "true");	
+	localStorage.setItem("updateFour", "true");	
 }
 
 function resetLocalStorage() {
@@ -831,7 +831,7 @@ if (document.title.includes("Verse Range")) {
 
 	
 	// }}}
-   // .......... onload {{{
+    // .......... onload {{{
 	//
 	setSelect("verseRangeBook", bookSelect);
 	let numVerses = localStorage.getItem("verseRangeNumberOfVerses");
@@ -1389,6 +1389,8 @@ function viewNextPrev(id) {
 	let chapter = div.getAttribute("data-chapter"); 
 	let verse = div.getAttribute("data-verse");
 	let numberOfVerses = verseCount[bookName][chapter];
+	let numberOfChapters = numChapters[bookName];
+	stock("verseRangeNumberOfChapters", numberOfChapters);
 	stock("verseRangeNumberOfVerses", numberOfVerses);
 	stock("verseRangeBook", bookId);
 	stock("verseRangeChapter", chapter);

@@ -23,7 +23,7 @@ const bookNames = {
 	'1': 'Genesis', '2': 'Exodus', '3': 'Leviticus', '4': 'Numbers', '5': 'Deuteronomy',
 	'6': 'Joshua', '7': 'Judges', '8': 'Ruth', '9': '1 Samuel', '10': '2 Samuel',
 	'11': '1 Kings', '12': '2 Kings', '13': '1 Chronicles', '14': '2 Chronicles',
-	'15': 'Ezra', '16': 'Nehemiah', '17': 'Esther', '18': 'Job', '19': 'Psalm',
+	'15': 'Ezra', '16': 'Nehemiah', '17': 'Esther', '18': 'Job', '19': 'Psalms',
 	'20': 'Proverbs', '21': 'Ecclesiastes', '22': 'Song of Solomon', '23': 'Isaiah',
 	'24': 'Jeremiah', '25': 'Lamentations', '26': 'Ezekiel', '27': 'Daniel', '28': 'Hosea',
 	'29': 'Joel', '30': 'Amos', '31': 'Obadiah', '32': 'Jonah', '33': 'Micah',
@@ -41,7 +41,7 @@ const numChapters = {
 	'Genesis': 50, 'Exodus': 40, 'Leviticus': 27, 'Numbers': 36, 'Deuteronomy': 34, 'Joshua': 24,
 	'Judges': 21, 'Ruth': 4, '1 Samuel': 31, '2 Samuel': 24, '1 Kings': 22, '2 Kings': 25,
 	'1 Chronicles': 29, '2 Chronicles': 36, 'Ezra': 10, 'Nehemiah': 13, 'Esther': 10, 'Job': 42,
-	'Psalm': 150, 'Proverbs': 31, 'Ecclesiastes': 12, 'Song of Solomon': 8, 'Isaiah': 66,
+	'Psalms': 150, 'Proverbs': 31, 'Ecclesiastes': 12, 'Song of Solomon': 8, 'Isaiah': 66,
 	'Jeremiah': 52, 'Lamentations': 5, 'Ezekiel': 48, 'Daniel': 12, 'Hosea': 14, 'Joel': 3,
 	'Amos': 9, 'Obadiah': 1, 'Jonah': 4, 'Micah': 7, 'Nahum': 3, 'Habakkuk': 3, 'Zephaniah': 3,
 	'Haggai': 2, 'Zechariah': 14, 'Malachi': 4, 'Matthew': 28, 'Mark': 16, 'Luke': 24, 'John': 21,
@@ -119,7 +119,7 @@ const verseCount = {
                 26: 14, 27: 23, 28: 28, 29: 25, 30: 31, 31: 40, 32: 22, 33: 33,
                 34: 37, 35: 16, 36: 33, 37: 24, 38: 41, 39: 30, 40: 24, 41: 34,
                 42: 17}, 
-        'Psalm': {1: 6, 2: 12, 3: 8, 4: 8, 5: 12, 6: 10, 7: 17, 8: 9, 9: 20, 10:
+        'Psalms': {1: 6, 2: 12, 3: 8, 4: 8, 5: 12, 6: 10, 7: 17, 8: 9, 9: 20, 10:
                 18, 11: 7, 12: 8, 13: 6, 14: 7, 15: 5, 16: 11, 17: 15, 18: 50,
                 19: 14, 20: 9, 21: 13, 22: 31, 23: 6, 24: 10, 25: 22, 26: 12,
                 27: 14, 28: 9, 29: 11, 30: 12, 31: 24, 32: 11, 33: 22, 34: 22,
@@ -832,7 +832,16 @@ if (document.title.includes("Verse Range")) {
 	
 	// }}}
    // .......... onload {{{
+	//
+	setSelect("verseRangeBook", bookSelect);
 	let numVerses = localStorage.getItem("verseRangeNumberOfVerses");
+	let numberOfChapters = localStorage.getItem("verseRangeNumberOfChapters");
+	removeAllChildNodes(chapterSelect);
+		for (let i = 1; i < Number(numberOfChapters) + 1; i++) {
+			let newOption = new Option(i, i);
+			chapterSelect.add(newOption, undefined);
+		}
+	setSelect("verseRangeChapter", chapterSelect);
 	if (numVerses) {
 		removeAllChildNodes(verseGteSelect);
 		removeAllChildNodes(verseLteSelect);
@@ -851,17 +860,11 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
 	}
-
-	setSelect("verseRangeBook", bookSelect);
-	setSelect("verseRangeChapter", chapterSelect);
 	setSelect("verseRangeVerseGte", verseGteSelect);
 	setSelect("verseRangeVerseLte", verseLteSelect);
-
 	let verseRangeForm = document.getElementById("verse-form");
-	if (document.getElementById("results") == null) {
-		if (verseGteSelect.value <= verseLteSelect.value) {
-			verseRangeForm.submit();
-		}
+	if (verseGteSelect.value <= verseLteSelect.value && document.getElementById("results") != null) {
+		verseRangeForm.submit();
 	}
 
 	// }}}
@@ -885,6 +888,7 @@ if (document.title.includes("Verse Range")) {
 		let verseGte = verseGteSelect.value; 
 		let verseLte = verseLteSelect.value;
 		let numberOfChapters = numChapters[bookName];
+		stock("verseRangeNumberOfChapters", numberOfChapters);
 		removeAllChildNodes(chapterSelect);
 		removeAllChildNodes(verseGteSelect);
 		removeAllChildNodes(verseLteSelect);		
@@ -1078,7 +1082,7 @@ if (document.title.includes("Verse Range")) {
 		}
 
 		if (lastVerse >= firstVerse) {
-			//document.getElementById("verse-form").submit();
+			document.getElementById("verse-form").submit();
 		}
 	}
 

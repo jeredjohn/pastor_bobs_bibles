@@ -4,7 +4,7 @@ from django.db import models
 BOOK_NAMES = [
     'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 'Joshua', 'Judges', 'Ruth', '1 Samuel',
     '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther', 
-    'Job', 'Psalm', 'Proverbs', 'Ecclesiastes', 'Song of Solomon', 'Isaiah', 'Jeremiah', 'Lamentations',
+    'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Solomon', 'Isaiah', 'Jeremiah', 'Lamentations',
     'Ezekiel', 'Daniel', 'Hosea', 'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 
     'Zephaniah', 'Haggai', 'Zechariah', 'Malachi', 'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans',
     '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians',
@@ -26,7 +26,7 @@ BOOK_CHOICES = [
     ('5', 'Deuteronomy'), ('6', 'Joshua'),('7', 'Judges'), ('8', 'Ruth'), 
     ('9', '1 Samuel'), ('10', '2 Samuel'), ('11', '1 Kings'), ('12', '2 Kings'),
     ('13', '1 Chronicles'), ('14', '2 Chronicles'), ('15', 'Ezra'), 
-    ('16', 'Nehemiah'), ('17', 'Esther'), ('18', 'Job'), ('19', 'Psalm'),
+    ('16', 'Nehemiah'), ('17', 'Esther'), ('18', 'Job'), ('19', 'Psalms'),
     ('20', 'Proverbs'), ('21', 'Ecclesiastes'), ('22', 'Song of Solomon'),
     ('23', 'Isaiah'), ('24', 'Jeremiah'), ('25', 'Lamentations'), ('26', 'Ezekiel'),
     ('27', 'Daniel'), ('28', 'Hosea'), ('29', 'Joel'), ('30', 'Amos'), 

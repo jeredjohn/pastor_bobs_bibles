@@ -198,17 +198,31 @@ class ESVVerseRangeView(FormView):
             if book_num == None:
                 book_num = 1
             book_name = BOOK_NAMES[int(book_num) - 1]
+            print("\n\n")
+            print(f"Book number: {book_num}")
+            print(type(f"book_name {book_name}"))
+            print(f"Book Name: {book_name}")
+            print(type(f"book_num {book_num}"))
             context['book_name'] = book_name
             chapter = self.request.GET.get('chapter')
+            print(f"Chapter: {chapter}")
             context['chapter'] = chapter
+            print(type(f"chapter {chapter}"))
             verse_start = self.request.GET.get('verse__gte')
+            print(f"Verse start: {verse_start}")
+            print(type(verse_start))
             context['verse_start'] = verse_start
             verse_end = self.request.GET.get('verse__lte')
+            print(f"Verse end: {verse_end}")
+            print(type(verse_end))
             context['verse_end'] = verse_end
             if book_name != None and book_num != None and chapter != None and verse_end != None and verse_start != None:
                 esv_verse_range_results = ESVBible.objects.filter(Q(book_name=book_name) & 
                     Q(chapter=chapter) & Q(verse__gte=verse_start) & Q(verse__lte=verse_end))     
                 context['esv_verse_range_results'] = esv_verse_range_results.order_by("verse")
+                print(esv_verse_range_results)
+                print(len(esv_verse_range_results))
+                print("\n\n")
             return context            
 
 esv_verse_range = ESVVerseRangeView.as_view()

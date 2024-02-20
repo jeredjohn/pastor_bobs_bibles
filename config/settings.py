@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY='django-insecure-&==8k0&frh&x+b+^3#!%_)wjd#3jb^sf30mh(7@!1z&jnajg*!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'pastorbobsbibles.app', 'www.pastorbobsbibles.app']
+ALLOWED_HOSTS = ['localhost', 'pastorbobsbibles.app', 'www.pastorbobsbibles.app', '172.232.25.213']
 
 # Application definition
 

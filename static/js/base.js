@@ -1,16 +1,3 @@
-const menu = document.getElementById("menu");
-if (menu != null) {
-	menu.addEventListener('click', (event) => {
-		let url = "";
-		if (document.URL.includes("https")) {
-			url = "https://pastorbobsbibles.app/";
-		} else {
-			url = "http://pastorbobsbibles.app/";
-		}			
-		stock("rememberUrl", url);
-		window.location.href = url;
-	});		
-}
 const chapterForm  = document.getElementById('signup'); 
 const bookSelect = document.getElementById("id_book_name"); 
 const chapterSelect = document.getElementById("id_chapter");
@@ -18,26 +5,16 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("update") != "Ten") {
+if (localStorage.getItem("update") != "Six") {
 	resetLocalStorage();
 }
 
 function resetLocalStorage() {
 	let fontSize = localStorage.getItem("fontSize");
 	localStorage.clear();
-	localStorage.setItem("update", "Ten");
+	localStorage.setItem("update", "Six");
 	localStorage.setItem("fontSize", fontSize);
 }
-
-const rememberUrl = localStorage.getItem("rememberUrl");
-if (document.URL.includes(rememberUrl)) {
-	//
-} else if (rememberUrl != null) {
-	window.onload = function() {
-		window.location.href = rememberUrl;
-	}		
-}
-
 
 // .......... BIBLE DATA
 // .......... bookNames {{{
@@ -261,21 +238,13 @@ if (searchType) {
 	searchType.addEventListener('click', (event) => {
 		url = document.URL;
 		if (url.includes("keyword")) {
-			url = url.replace("keyword", "bible");
-			stock("rememberUrl", url);
-			window.location.href = url;
+			window.location.href = url.replace("keyword", "bible");
 		} else if (url.includes("verse_range")) {
-			url = url.replace("verse_range", "bible");
-			stock("rememberUrl", url);
-			window.location.href = url;
+			window.location.href = url.replace("verse_range", "bible");
 		} else if (url.includes("_verse")) {
-			url = url.replace("verse", "bible");
-			stock("rememberUrl", url);
-			window.location.href = url;
+			window.location.href = url.replace("verse", "bible");
 		} else {
-			url = url.replace("chapters", "bible");	
-			stock("rememberUrl", url);
-			window.location.href = url;
+			window.location.href = url.replace("chapters", "bible");	
 		}
 	});
 }
@@ -283,55 +252,31 @@ if (searchType) {
 function urlRedirect() {
 	if (document.URL.includes("localhost")) {
 		if (document.URL.includes("amp")) {
-			let url = "http://localhost:8000/bible_app/amp_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="http://localhost:8000/bible_app/amp_bible/";
 		} else if (document.URL.includes("esv")) {
-			let url = "http://localhost:8000/bible_app/esv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="http://localhost:8000/bible_app/esv_bible/";
 		} else if (document.URL.includes("kjv")) {
-			let url = "http://localhost:8000/bible_app/kjv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="http://localhost:8000/bible_app/kjv_bible/";
 		} else if (document.URL.includes("nkjv")) {
-			let url = "http://localhost:8000/bible_app/nkjv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="http://localhost:8000/bible_app/nkjv_bible/";
 		} else if (document.URL.includes("nas")) {
-			let url = "http://localhost:8000/bible_app/nas_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="http://localhost:8000/bible_app/nas_bible/";
 		} else {
-			let url = "http://localhost:8000/bible_app/niv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="http://localhost:8000/bible_app/niv_bible/";
 		}
 	} else {
 		if (document.URL.includes('amp')) {
-			let url = "https://pastorbobsbibles.app/bible_app/amp_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="https://pastorbobsbibles.app/bible_app/amp_bible/";
 		} else if (document.URL.includes('esv')) {
-			let url = "https://pastorbobsbibles.app/bible_app/esv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="https://pastorbobsbibles.app/bible_app/esv_bible/";
 		} else if (document.URL.includes('kjv')) {
-			let url = "https://pastorbobsbibles.app/bible_app/kjv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="https://pastorbobsbibles.app/bible_app/kjv_bible/";
 		} else if (document.URL.includes('nkjv')) {
-			let url = "https://pastorbobsbibles.app/bible_app/nkjv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="https://pastorbobsbibles.app/bible_app/nkjv_bible/";
 		} else if (document.URL.includes('nas')) {
-			let url = "https://pastorbobsbibles.app/bible_app/nas_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="https://pastorbobsbibles.app/bible_app/nas_bible/";
 		} else {
-			let url = "https://pastorbobsbibles.app/bible_app/niv_bible/";
-			stock("rememberUrl", url);			
-			window.location.href = url
+			window.location.href="https://pastorbobsbibles.app/bible_app/niv_bible/";
 		}
 	}
 }		
@@ -396,12 +341,9 @@ if (document.URL.includes("keyword")) {
 		} else {
 			localStorage.setItem("keyword", keyword.value);
 		}
-		stock("rememberUrl", document.URL); 
 		keywordForm.submit();		
 	});		
-	let keywordResults = document.getElementById("keyword-results"); 
-	if (keywordResults == null) {
-		stock("rememberUrl", document.URL); 
+	if (document.getElementById("keyword-results") == null) {
 		keywordForm.submit();
 	}
 }
@@ -492,7 +434,6 @@ if (document.title.includes("Chapter")) {
 		chapterSelect.value = chapterChapterStorage;
 	}
 	if (document.getElementById("results") == null) {
-		stock("rememberUrl", document.URL); 
 		document.getElementById("chapter-form").submit();
 	}
 }	
@@ -616,7 +557,6 @@ if (document.title.includes("Verse Search")) {
 		verseSelect.value = localStorage.getItem("verseVerse");
 	}
 	if (document.getElementById("text-verse") == null) {
-		stock("rememberUrl", document.URL);
 		document.getElementById("verse-form").submit();
 	}
 // }}}
@@ -628,7 +568,6 @@ if (document.title.includes("Verse Search")) {
 		stock("verseBook", bookSelect.value);
 		stock("verseChapter", chapterSelect.value);
 		stock("verseVerse", verseSelect.value);
-		stock("rememberUrl", document.URL);
 		verseForm.submit();
 	});		
 }
@@ -929,7 +868,6 @@ if (document.title.includes("Verse Range")) {
 	setSelect("verseRangeVerseLte", verseLteSelect);
 	let verseRangeForm = document.getElementById("verse-form");
 	if (verseGteSelect.value <= verseLteSelect.value && document.getElementById("results") == null) {
-		stock("rememberUrl", document.URL);
 		verseRangeForm.submit();
 	}
 
@@ -942,7 +880,7 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
-		stock("rememberUrl", document.URL);
+
 		verseRangeForm.submit();
 	});
 

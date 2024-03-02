@@ -49,9 +49,11 @@
 				{% endif %}
 
 				{% if "Home" not in title %}
+					<a href="{% url 'home' %}">
 						<div id="menu" class="menu">
 							<img id="menu-icon" src="{% static "icons/bible.png" %}" alt="Menu icon">
 						</div>
+					</a>
 				{% endif %}
 
 				{% if "Home" not in title and "App" not in title %}

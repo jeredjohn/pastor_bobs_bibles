@@ -1,3 +1,16 @@
+const menu = document.getElementById("menu");
+if (menu != null) {
+	menu.addEventListener('click', (event) => {
+		let url = "";
+		if (document.URL.includes("https")) {
+			url = "https://pastorbobsbibles.app/";
+		} else {
+			url = "http://pastorbobsbibles.app/";
+		}			
+		stock("rememberUrl", url);
+		window.location.href = url;
+	});		
+}
 const chapterForm  = document.getElementById('signup'); 
 const bookSelect = document.getElementById("id_book_name"); 
 const chapterSelect = document.getElementById("id_chapter");
@@ -5,17 +18,26 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("updateThree") != "true") {
+if (localStorage.getItem("update") != "Ten") {
 	resetLocalStorage();
-	localStorage.setItem("updateThree", "true");	
 }
 
 function resetLocalStorage() {
 	let fontSize = localStorage.getItem("fontSize");
 	localStorage.clear();
-	localStorage.setItem("updateTwo", "true");
+	localStorage.setItem("update", "Ten");
 	localStorage.setItem("fontSize", fontSize);
 }
+
+const rememberUrl = localStorage.getItem("rememberUrl");
+if (document.URL.includes(rememberUrl)) {
+	//
+} else if (rememberUrl != null) {
+	window.onload = function() {
+		window.location.href = rememberUrl;
+	}		
+}
+
 
 // .......... BIBLE DATA
 // .......... bookNames {{{
@@ -23,7 +45,7 @@ const bookNames = {
 	'1': 'Genesis', '2': 'Exodus', '3': 'Leviticus', '4': 'Numbers', '5': 'Deuteronomy',
 	'6': 'Joshua', '7': 'Judges', '8': 'Ruth', '9': '1 Samuel', '10': '2 Samuel',
 	'11': '1 Kings', '12': '2 Kings', '13': '1 Chronicles', '14': '2 Chronicles',
-	'15': 'Ezra', '16': 'Nehemiah', '17': 'Esther', '18': 'Job', '19': 'Psalm',
+	'15': 'Ezra', '16': 'Nehemiah', '17': 'Esther', '18': 'Job', '19': 'Psalms',
 	'20': 'Proverbs', '21': 'Ecclesiastes', '22': 'Song of Solomon', '23': 'Isaiah',
 	'24': 'Jeremiah', '25': 'Lamentations', '26': 'Ezekiel', '27': 'Daniel', '28': 'Hosea',
 	'29': 'Joel', '30': 'Amos', '31': 'Obadiah', '32': 'Jonah', '33': 'Micah',
@@ -41,7 +63,7 @@ const numChapters = {
 	'Genesis': 50, 'Exodus': 40, 'Leviticus': 27, 'Numbers': 36, 'Deuteronomy': 34, 'Joshua': 24,
 	'Judges': 21, 'Ruth': 4, '1 Samuel': 31, '2 Samuel': 24, '1 Kings': 22, '2 Kings': 25,
 	'1 Chronicles': 29, '2 Chronicles': 36, 'Ezra': 10, 'Nehemiah': 13, 'Esther': 10, 'Job': 42,
-	'Psalm': 150, 'Proverbs': 31, 'Ecclesiastes': 12, 'Song of Solomon': 8, 'Isaiah': 66,
+	'Psalms': 150, 'Proverbs': 31, 'Ecclesiastes': 12, 'Song of Solomon': 8, 'Isaiah': 66,
 	'Jeremiah': 52, 'Lamentations': 5, 'Ezekiel': 48, 'Daniel': 12, 'Hosea': 14, 'Joel': 3,
 	'Amos': 9, 'Obadiah': 1, 'Jonah': 4, 'Micah': 7, 'Nahum': 3, 'Habakkuk': 3, 'Zephaniah': 3,
 	'Haggai': 2, 'Zechariah': 14, 'Malachi': 4, 'Matthew': 28, 'Mark': 16, 'Luke': 24, 'John': 21,
@@ -119,7 +141,7 @@ const verseCount = {
                 26: 14, 27: 23, 28: 28, 29: 25, 30: 31, 31: 40, 32: 22, 33: 33,
                 34: 37, 35: 16, 36: 33, 37: 24, 38: 41, 39: 30, 40: 24, 41: 34,
                 42: 17}, 
-        'Psalm': {1: 6, 2: 12, 3: 8, 4: 8, 5: 12, 6: 10, 7: 17, 8: 9, 9: 20, 10:
+        'Psalms': {1: 6, 2: 12, 3: 8, 4: 8, 5: 12, 6: 10, 7: 17, 8: 9, 9: 20, 10:
                 18, 11: 7, 12: 8, 13: 6, 14: 7, 15: 5, 16: 11, 17: 15, 18: 50,
                 19: 14, 20: 9, 21: 13, 22: 31, 23: 6, 24: 10, 25: 22, 26: 12,
                 27: 14, 28: 9, 29: 11, 30: 12, 31: 24, 32: 11, 33: 22, 34: 22,
@@ -239,13 +261,21 @@ if (searchType) {
 	searchType.addEventListener('click', (event) => {
 		url = document.URL;
 		if (url.includes("keyword")) {
-			window.location.href = url.replace("keyword", "bible");
+			url = url.replace("keyword", "bible");
+			stock("rememberUrl", url);
+			window.location.href = url;
 		} else if (url.includes("verse_range")) {
-			window.location.href = url.replace("verse_range", "bible");
+			url = url.replace("verse_range", "bible");
+			stock("rememberUrl", url);
+			window.location.href = url;
 		} else if (url.includes("_verse")) {
-			window.location.href = url.replace("verse", "bible");
+			url = url.replace("verse", "bible");
+			stock("rememberUrl", url);
+			window.location.href = url;
 		} else {
-			window.location.href = url.replace("chapters", "bible");	
+			url = url.replace("chapters", "bible");	
+			stock("rememberUrl", url);
+			window.location.href = url;
 		}
 	});
 }
@@ -253,31 +283,55 @@ if (searchType) {
 function urlRedirect() {
 	if (document.URL.includes("localhost")) {
 		if (document.URL.includes("amp")) {
-			window.location.href="http://localhost:8000/bible_app/amp_bible/";
+			let url = "http://localhost:8000/bible_app/amp_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes("esv")) {
-			window.location.href="http://localhost:8000/bible_app/esv_bible/";
+			let url = "http://localhost:8000/bible_app/esv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes("kjv")) {
-			window.location.href="http://localhost:8000/bible_app/kjv_bible/";
+			let url = "http://localhost:8000/bible_app/kjv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes("nkjv")) {
-			window.location.href="http://localhost:8000/bible_app/nkjv_bible/";
+			let url = "http://localhost:8000/bible_app/nkjv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes("nas")) {
-			window.location.href="http://localhost:8000/bible_app/nas_bible/";
+			let url = "http://localhost:8000/bible_app/nas_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else {
-			window.location.href="http://localhost:8000/bible_app/niv_bible/";
+			let url = "http://localhost:8000/bible_app/niv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		}
 	} else {
 		if (document.URL.includes('amp')) {
-			window.location.href="https://pastorbobsbibles.app/bible_app/amp_bible/";
+			let url = "https://pastorbobsbibles.app/bible_app/amp_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes('esv')) {
-			window.location.href="https://pastorbobsbibles.app/bible_app/esv_bible/";
+			let url = "https://pastorbobsbibles.app/bible_app/esv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes('kjv')) {
-			window.location.href="https://pastorbobsbibles.app/bible_app/kjv_bible/";
+			let url = "https://pastorbobsbibles.app/bible_app/kjv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes('nkjv')) {
-			window.location.href="https://pastorbobsbibles.app/bible_app/nkjv_bible/";
+			let url = "https://pastorbobsbibles.app/bible_app/nkjv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else if (document.URL.includes('nas')) {
-			window.location.href="https://pastorbobsbibles.app/bible_app/nas_bible/";
+			let url = "https://pastorbobsbibles.app/bible_app/nas_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		} else {
-			window.location.href="https://pastorbobsbibles.app/bible_app/niv_bible/";
+			let url = "https://pastorbobsbibles.app/bible_app/niv_bible/";
+			stock("rememberUrl", url);			
+			window.location.href = url
 		}
 	}
 }		
@@ -342,9 +396,12 @@ if (document.URL.includes("keyword")) {
 		} else {
 			localStorage.setItem("keyword", keyword.value);
 		}
+		stock("rememberUrl", document.URL); 
 		keywordForm.submit();		
 	});		
-	if (document.getElementById("keyword-results") == null) {
+	let keywordResults = document.getElementById("keyword-results"); 
+	if (keywordResults == null) {
+		stock("rememberUrl", document.URL); 
 		keywordForm.submit();
 	}
 }
@@ -435,6 +492,7 @@ if (document.title.includes("Chapter")) {
 		chapterSelect.value = chapterChapterStorage;
 	}
 	if (document.getElementById("results") == null) {
+		stock("rememberUrl", document.URL); 
 		document.getElementById("chapter-form").submit();
 	}
 }	
@@ -558,6 +616,7 @@ if (document.title.includes("Verse Search")) {
 		verseSelect.value = localStorage.getItem("verseVerse");
 	}
 	if (document.getElementById("text-verse") == null) {
+		stock("rememberUrl", document.URL);
 		document.getElementById("verse-form").submit();
 	}
 // }}}
@@ -569,6 +628,7 @@ if (document.title.includes("Verse Search")) {
 		stock("verseBook", bookSelect.value);
 		stock("verseChapter", chapterSelect.value);
 		stock("verseVerse", verseSelect.value);
+		stock("rememberUrl", document.URL);
 		verseForm.submit();
 	});		
 }
@@ -578,7 +638,6 @@ if (document.title.includes("Verse Search")) {
 
 if (document.title.includes("Verse Search")) {
 	bookSelect.addEventListener('change', (event) => {
-		console.log("Book changed");
 		let bookName = bookNames[bookSelect.value]
 		
 		// Reset chapter to one and set localStorage
@@ -682,7 +741,6 @@ function showNextVerse() {
 			}
 		} else if (chapter == numberOfChapters) {
 			if (bookId < 66) {
-				console.log("correct");
 				bookSelect.value = Number(bookId) + 1;
 				stock("verseBook", bookSelect.value);
 				nextChapterSet();
@@ -763,7 +821,6 @@ function showPreviousVerse() {
 				verseSelect.value = numberOfVerses;
 				stock("verseVerse", verseSelect.value);		
 			} else if (bookId == 1) {
-				console.log("correct");
 				chapterSelect.value = Number(chapterSelect.value) - 1;
 				stock("verseChapter", chapterSelect.value);
 				let numberOfVerses = verseCount[bookName][chapterSelect.value];
@@ -782,8 +839,6 @@ function showPreviousVerse() {
 
 		} else if (chapter == 1) {
 			if (bookId > 1) {
-				console.log("correct");
-				console.log("correct");
 				bookSelect.value = Number(bookSelect.value) - 1;
 				stock("verseBook", bookSelect.value);				
 				bookId = bookSelect.value;
@@ -797,7 +852,6 @@ function showPreviousVerse() {
 				chapterSelect.value = numberOfChapters;
 				stock("verseChapter", chapterSelect.value);
 				let numberOfVerses = verseCount[bookName][chapterSelect.value];
-				console.log(numberOfVerses);
 				if (verseSelect != null) {
 					removeAllChildNodes(verseSelect);
 					for (let i = 1; i < numberOfVerses + 1; i++) {
@@ -837,8 +891,22 @@ if (document.title.includes("Verse Range")) {
 
 	
 	// }}}
-   // .......... onload {{{
+    // .......... onload {{{
+	
+	if (localStorage.getItem("verseRangeBook") == null) {
+		stock("verseRangeBook", "1");
+		stock("verseRangeNumberOfChapters", "50");
+	}		
+	setSelect("verseRangeBook", bookSelect);
+
 	let numVerses = localStorage.getItem("verseRangeNumberOfVerses");
+	let numberOfChapters = localStorage.getItem("verseRangeNumberOfChapters");
+	removeAllChildNodes(chapterSelect);
+		for (let i = 1; i < Number(numberOfChapters) + 1; i++) {
+			let newOption = new Option(i, i);
+			chapterSelect.add(newOption, undefined);
+		}
+	setSelect("verseRangeChapter", chapterSelect);
 	if (numVerses) {
 		removeAllChildNodes(verseGteSelect);
 		removeAllChildNodes(verseLteSelect);
@@ -857,14 +925,11 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
 	}
-
-	setSelect("verseRangeBook", bookSelect);
-	setSelect("verseRangeChapter", chapterSelect);
 	setSelect("verseRangeVerseGte", verseGteSelect);
 	setSelect("verseRangeVerseLte", verseLteSelect);
-
 	let verseRangeForm = document.getElementById("verse-form");
-	if (document.getElementById("results") == null) {
+	if (verseGteSelect.value <= verseLteSelect.value && document.getElementById("results") == null) {
+		stock("rememberUrl", document.URL);
 		verseRangeForm.submit();
 	}
 
@@ -877,9 +942,7 @@ if (document.title.includes("Verse Range")) {
 		stock("verseRangeChapter", chapterSelect.value);
 		stock("verseRangeVerseGte", verseGteSelect.value);
 		stock("verseRangeVerseLte", verseLteSelect.value);
-		console.log("GTE", verseGteSelect.value);
-		console.log("GTE", verseGteSelect.value);
-		console.log("LTE", verseLteSelect.value);
+		stock("rememberUrl", document.URL);
 		verseRangeForm.submit();
 	});
 
@@ -891,6 +954,7 @@ if (document.title.includes("Verse Range")) {
 		let verseGte = verseGteSelect.value; 
 		let verseLte = verseLteSelect.value;
 		let numberOfChapters = numChapters[bookName];
+		stock("verseRangeNumberOfChapters", numberOfChapters);
 		removeAllChildNodes(chapterSelect);
 		removeAllChildNodes(verseGteSelect);
 		removeAllChildNodes(verseLteSelect);		
@@ -1043,8 +1107,6 @@ if (document.title.includes("Verse Range")) {
 		let numberOfVerses = verseCount[bookName][chapter];
 		let	lastVerse = verseLteSelect.value;
 		let firstVerse = verseGteSelect.value;
-
-
 		if (arg == "addToEnd") {
 			let option = Number(lastVerse);
 			if (option < numberOfVerses) {
@@ -1082,7 +1144,9 @@ if (document.title.includes("Verse Range")) {
 				stock("verseRangeVerseGte", String(newOption));
 			}
 		}
-		document.getElementById("verse-form").submit();
+		if (Number(lastVerse) >= Number(firstVerse)) {
+			document.getElementById("verse-form").submit();
+		}
 	}
 
 	function mouseOver(div) {
@@ -1338,7 +1402,7 @@ function stock(item, value) {
 function setSelect(storageValue, select) {
 	if (localStorage.getItem(storageValue)) {
 		select.value = Number(localStorage.getItem(storageValue));
-	}
+	} 	
 }
 
 // }}}
@@ -1387,8 +1451,9 @@ function viewNextPrev(id) {
 	let bookName = bookNames[bookId];
 	let chapter = div.getAttribute("data-chapter"); 
 	let verse = div.getAttribute("data-verse");
-	console.log(verse, typeof(verse));
 	let numberOfVerses = verseCount[bookName][chapter];
+	let numberOfChapters = numChapters[bookName];
+	stock("verseRangeNumberOfChapters", numberOfChapters);
 	stock("verseRangeNumberOfVerses", numberOfVerses);
 	stock("verseRangeBook", bookId);
 	stock("verseRangeChapter", chapter);

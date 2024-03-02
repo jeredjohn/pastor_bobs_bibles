@@ -5,15 +5,14 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("updateFive") != "true") {
+if (localStorage.getItem("update") != "Six") {
 	resetLocalStorage();
-	localStorage.setItem("updateFive", "true");	
 }
 
 function resetLocalStorage() {
 	let fontSize = localStorage.getItem("fontSize");
 	localStorage.clear();
-	localStorage.setItem("updateTwo", "true");
+	localStorage.setItem("update", "Six");
 	localStorage.setItem("fontSize", fontSize);
 }
 
@@ -1046,8 +1045,6 @@ if (document.title.includes("Verse Range")) {
 		let numberOfVerses = verseCount[bookName][chapter];
 		let	lastVerse = verseLteSelect.value;
 		let firstVerse = verseGteSelect.value;
-
-
 		if (arg == "addToEnd") {
 			let option = Number(lastVerse);
 			if (option < numberOfVerses) {
@@ -1085,8 +1082,7 @@ if (document.title.includes("Verse Range")) {
 				stock("verseRangeVerseGte", String(newOption));
 			}
 		}
-
-		if (lastVerse >= firstVerse) {
+		if (Number(lastVerse) >= Number(firstVerse)) {
 			document.getElementById("verse-form").submit();
 		}
 	}

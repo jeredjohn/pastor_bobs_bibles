@@ -18,14 +18,14 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("update") != "Ten") {
+if (localStorage.getItem("update") != "Eleven") {
 	resetLocalStorage();
 }
 
 function resetLocalStorage() {
 	let fontSize = localStorage.getItem("fontSize");
 	localStorage.clear();
-	localStorage.setItem("update", "Ten");
+	localStorage.setItem("update", "Eleven");
 	localStorage.setItem("fontSize", fontSize);
 }
 
@@ -388,6 +388,7 @@ if (document.URL.includes("keyword")) {
 		keyword.value = storageKeyword;
 	}		
 	let keywordForm = document.getElementById("keyword-form");
+	let keywordResults = document.getElementById("keyword-results"); 
 	keywordForm.addEventListener('submit', function (event) {
 		event.preventDefault();
 		if (storageKeyword != null) {
@@ -397,12 +398,15 @@ if (document.URL.includes("keyword")) {
 			localStorage.setItem("keyword", keyword.value);
 		}
 		stock("rememberUrl", document.URL); 
-		keywordForm.submit();		
+		if (keywordResults != "") {
+			keywordForm.submit();		
+		}			
 	});		
-	let keywordResults = document.getElementById("keyword-results"); 
 	if (keywordResults == null) {
 		stock("rememberUrl", document.URL); 
-		keywordForm.submit();
+		if (keyword.value != "") {
+			keywordForm.submit();
+		}			
 	}
 }
 // }}}

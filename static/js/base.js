@@ -5,14 +5,14 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("update") != "Six") {
+if (localStorage.getItem("update") != "7.0") {
 	resetLocalStorage();
 }
 
 function resetLocalStorage() {
 	let fontSize = localStorage.getItem("fontSize");
 	localStorage.clear();
-	localStorage.setItem("update", "Six");
+	localStorage.setItem("update", "7.0");
 	localStorage.setItem("fontSize", fontSize);
 }
 

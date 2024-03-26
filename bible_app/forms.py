@@ -14,7 +14,6 @@ class AMPCChapterForm(forms.ModelForm):
 class AMPCVerseForm(forms.ModelForm):
     book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
                                   widget=forms.Select(attrs={'autofocus': True}))
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     class Meta:
@@ -23,7 +22,8 @@ class AMPCVerseForm(forms.ModelForm):
 
 
 class AMPCVerseRangeForm(forms.Form):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse__gte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     verse__lte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
@@ -41,7 +41,8 @@ class ESVChapterForm(forms.ModelForm):
 
 
 class ESVVerseForm(forms.ModelForm):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     class Meta:
@@ -50,7 +51,8 @@ class ESVVerseForm(forms.ModelForm):
 
 
 class ESVVerseRangeForm(forms.Form):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse__gte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     verse__lte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
@@ -68,7 +70,8 @@ class KJVChapterForm(forms.ModelForm):
 
 
 class KJVVerseForm(forms.ModelForm):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     class Meta:
@@ -77,7 +80,8 @@ class KJVVerseForm(forms.ModelForm):
 
 
 class KJVVerseRangeForm(forms.Form):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse__gte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     verse__lte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
@@ -95,7 +99,8 @@ class NKJVChapterForm(forms.ModelForm):
 
 
 class NKJVVerseForm(forms.ModelForm):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     class Meta:
@@ -104,7 +109,8 @@ class NKJVVerseForm(forms.ModelForm):
 
 
 class NKJVVerseRangeForm(forms.Form):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse__gte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     verse__lte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
@@ -122,7 +128,8 @@ class NASChapterForm(forms.ModelForm):
 
 
 class NASVerseForm(forms.ModelForm):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     class Meta:
@@ -131,7 +138,8 @@ class NASVerseForm(forms.ModelForm):
 
 
 class NASVerseRangeForm(forms.Form):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse__gte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     verse__lte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
@@ -149,7 +157,8 @@ class NIVChapterForm(forms.ModelForm):
 
 
 class NIVVerseForm(forms.ModelForm):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     class Meta:
@@ -158,7 +167,8 @@ class NIVVerseForm(forms.ModelForm):
 
 
 class NIVVerseRangeForm(forms.Form):
-    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES)
+    book_name = forms.ChoiceField(label="", choices=BOOK_CHOICES,
+                                  widget=forms.Select(attrs={'autofocus': True}))
     chapter = forms.ChoiceField(label="", choices=CHAPTER_CHOICES)
     verse__gte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 
     verse__lte = forms.ChoiceField(label="", choices=VERSE_CHOICES) 

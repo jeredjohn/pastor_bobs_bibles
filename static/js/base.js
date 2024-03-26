@@ -283,47 +283,6 @@ function urlRedirect() {
 
 // }}}
 
-// .......... LOCAL STORAGE - ZOOM {{{
-
-let zoomInIcon = document.getElementById("zoom-in");
-let zoomOutIcon = document.getElementById("zoom-out");
-
-zoomInIcon.addEventListener('click', (event) => {
-	zoomIn();
-});	
-
-zoomOutIcon.addEventListener('click', (event) => {
-	zoomOut();
-});	
-
-if (localStorage.getItem("fontSize") == null) {
-		localStorage.setItem("fontSize", "16px");
-		body.style.fontSize = localStorage.getItem("fontSize");
-} else {
-	let fontSize = localStorage.getItem("fontSize");
-	body.style.fontSize = fontSize;
-}
-
-function zoomOut() {
-	let currentFontSize = localStorage.getItem("fontSize");
-	let parsedFontSize = parseInt(currentFontSize) - 2;
-	let newFontSize = `${parsedFontSize}px`;
-	localStorage.removeItem("fontSize");
-	localStorage.setItem("fontSize", newFontSize);
-	body.style.fontSize = newFontSize;	
-}
-
-function zoomIn() {
-	let currentFontSize = localStorage.getItem("fontSize");
-	let parsedFontSize = parseInt(currentFontSize) + 2;
-	let newFontSize = `${parsedFontSize}px`;
-	localStorage.removeItem("fontSize");
-	localStorage.setItem("fontSize", newFontSize);
-	body.style.fontSize = newFontSize;	
-}
-
-// }}}
-
 // .......... KEYWORD SCRIPT {{{
 // .......... onLoad {{{
 if (document.URL.includes("keyword")) {

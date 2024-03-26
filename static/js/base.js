@@ -5,14 +5,14 @@ const verseSelect = document.getElementById("id_verse");
 const verseGteSelect = document.getElementById("id_verse__gte");
 const verseLteSelect = document.getElementById("id_verse__lte");
 
-if (localStorage.getItem("update") != "7.0") {
+if (localStorage.getItem("update") != "7.1") {
 	resetLocalStorage();
 }
 
 function resetLocalStorage() {
 	let fontSize = localStorage.getItem("fontSize");
 	localStorage.clear();
-	localStorage.setItem("update", "7.0");
+	localStorage.setItem("update", "7.1");
 	localStorage.setItem("fontSize", fontSize);
 }
 
@@ -578,37 +578,30 @@ if (document.title.includes("Verse Search")) {
 if (document.title.includes("Verse Search")) {
 	bookSelect.addEventListener('change', (event) => {
 		let bookName = bookNames[bookSelect.value]
-		
-		// Reset chapter to one and set localStorage
-		let chapter = chapterSelect.value;
+		stock("verseBook", bookName);
+
 		removeAllChildNodes(chapterSelect);
 		let numberOfChapters = numChapters[bookName];
+		stock("verseNumberOfChapters", numberOfChapters);
+
 		for (let i = 1; i < numberOfChapters + 1; i++) {
 			let newOption = new Option(i, i);
 			chapterSelect.add(newOption, undefined);
 		}
-		chapterSelect.value = 1;
-		if (localStorage.getItem("verseChapter") != null) {
-			localStorage.removeItem("verseChapter");
-		}
-		localStorage.setItem("verseChapter", String(chapterSelect.value));
-		if (localStorage.getItem("verseNumberOfChapters") != null) {
-			localStorage.removeItem("verseNumberOfChapters");
-		}
-		localStorage.setItem("verseNumberOfChapters", String(numberOfChapters));	
+		let chapter = chapterSelect.value;
+		chapter = 1;
+		stock("verseChapter", chapter);
 
-		// Reset verse to one and set localStorage
-		let verse = verseSelect.value; 
 		removeAllChildNodes(verseSelect);
 		let numberOfVerses = verseCount[bookName][chapter];
+		stock("verseNumberOfVerses", numberOfVerses);
+
 		for (let i = 1; i < numberOfVerses + 1; i++) {
 			let newOption = new Option(i, i);
 			verseSelect.add(newOption, undefined);
 		}
-		if (localStorage.getItem("verseNumberOfVerses") != null) {
-			localStorage.removeItem("verseNumberOfVerses");
-		}
-		localStorage.setItem("verseNumberOfVerses", String(numberOfVerses));
+		verseSelect.value = 1;
+		stock("verseVerse", 1);
 	});		
 
 // }}}
@@ -616,12 +609,14 @@ if (document.title.includes("Verse Search")) {
 
 	chapterSelect.addEventListener('change', (event) => {
 		let bookName = bookNames[bookSelect.value]
+		stock("verseBook", bookName);
+
 		let chapter = chapterSelect.value;
-		if (localStorage.getItem("verseChapter") != null) {
-			localStorage.removeItem("verseChapter");
-		}
-		localStorage.setItem("verseChapter", chapter);
+		stock("verseChapter", chapter);
+
 		let numberOfVerses = verseCount[bookName][chapter];
+		stock("verseNumberOfVerses", numberOfVerses);
+
 		if (verseSelect != null) {
 			removeAllChildNodes(verseSelect);
 			for (let i = 1; i < numberOfVerses + 1; i++) {
